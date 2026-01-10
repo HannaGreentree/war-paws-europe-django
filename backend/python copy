@@ -1,0 +1,382 @@
+1) core/views.py
+
+
+from datetime import date
+
+from django.shortcuts import render
+
+
+def home_view(request):
+    """
+    Home page view.
+    Calculates the LIVE war-day number based on:
+    27/12/2025 = Day 1402
+    """
+    base_date = date(2025, 12, 27)
+    base_day = 1402
+
+    today = date.today()
+    diff_days = (today - base_date).days
+    war_day = base_day + diff_days
+
+    # Safety: if server date is earlier than base_date, don't show negative
+    if war_day < 1:
+        war_day = base_day
+
+    context = {
+        "war_day_number": war_day,
+    }
+    return render(request, "home.html", context)
+
+
+
+2) core/urls.py
+
+from django.urls import path
+from .views import home_view
+
+urlpatterns = [
+    path("", home_view, name="home"),
+]
+
+
+#SHELTERS
+
+
+1) shelters/models.py
+
+from django.db import models
+
+
+class Shelter(models.Model):
+    name = models.CharField(max_length=120)
+    city = models.CharField(max_length=80, blank=True)
+    description = models.TextField(blank=True)
+
+    website_url = models.URLField(blank=True)
+    instagram_url = models.URLField(blank=True)
+    facebook_url = models.URLField(blank=True)
+    tiktok_url = models.URLField(blank=True)
+    telegram_url = models.URLField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.city})" if self.city else self.name
+
+
+2) shelters/views.py
+
+from django.db.models import Q
+from django.shortcuts import render
+
+from .models import Shelter
+
+
+def shelters_list_view(request):
+    """
+    Public shelters page:
+    - Shows shelter cards
+    - Supports keyword search via ?q=
+    """
+    query = request.GET.get("q", "").strip()
+
+    shelters_qs = Shelter.objects.all()
+
+    if query:
+        shelters_qs = shelters_qs.filter(
+            Q(name__icontains=query)
+            | Q(city__icontains=query)
+            | Q(description__icontains=query)
+        )
+
+    context = {
+        "shelters": shelters_qs,
+        "query": query,
+    }
+    return render(request, "shelters.html", context)
+
+
+3) shelters/urls.py
+
+from django.urls import path
+from .views import shelters_list_view
+
+urlpatterns = [
+    path("", shelters_list_view, name="shelters"),
+]
+
+
+4) Project urls.py (example)
+In your main project urls.py (often config/urls.py):
+
+
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("shelters/", include("shelters.urls")),
+]
+
+
+5) shelters/admin.py (so you can CRUD in admin)
+
+from django.contrib import admin
+from .models import Shelter
+
+
+@admin.register(Shelter)
+class ShelterAdmin(admin.ModelAdmin):
+    list_display = ("name", "city", "created_at")
+    search_fields = ("name", "city", "description")
+    list_filter = ("city",)
+
+
+
+
+
+
+
+
+
+
+
+1) blog/models.py
+
+from django.conf import settings
+from django.db import models
+from django.utils.text import slugify
+
+
+class BlogPost(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="blog_posts",
+    )
+    title = models.CharField(max_length=160)
+    slug = models.SlugField(max_length=180, unique=True, blank=True)
+
+    city = models.CharField(max_length=80, blank=True)
+    content = models.TextField()
+    image = models.ImageField(upload_to="blog/", blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return self.title
+
+    def save(self, *args, **kwargs):
+        # Create a unique slug if not provided
+        if not self.slug:
+            base_slug = slugify(self.title)[:160] or "post"
+            slug = base_slug
+            counter = 1
+            while BlogPost.objects.filter(slug=slug).exists():
+                counter += 1
+                slug = f"{base_slug}-{counter}"
+            self.slug = slug
+        super().save(*args, **kwargs)
+
+
+
+2) blog/forms.py
+
+from django import forms
+from .models import BlogPost
+
+
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ["title", "city", "image", "content"]
+
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "Post title"}),
+            "city": forms.TextInput(attrs={"placeholder": "City (optional)"}),
+            "content": forms.Textarea(attrs={"rows": 8, "placeholder": "Write your post..."}),
+        }
+
+
+
+3) blog/views.py
+
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import BlogPostForm
+from .models import BlogPost
+
+
+def blog_list_view(request):
+    """
+    Public blog page.
+    Supports search via ?q=
+    """
+    query = request.GET.get("q", "").strip()
+
+    posts = BlogPost.objects.select_related("author").all()
+
+    if query:
+        posts = posts.filter(
+            Q(title__icontains=query)
+            | Q(city__icontains=query)
+            | Q(content__icontains=query)
+            | Q(author__username__icontains=query)
+        )
+
+    return render(request, "blog/blog_list.html", {"posts": posts, "query": query})
+
+
+def blog_detail_view(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug)
+    return render(request, "blog/blog_detail.html", {"post": post})
+
+
+@login_required
+def blog_create_view(request):
+    """
+    Volunteers create posts.
+    Author is always the logged-in user.
+    """
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect("blog_detail", slug=post.slug)
+    else:
+        form = BlogPostForm()
+
+    return render(request, "blog/blog_form.html", {"form": form, "mode": "create"})
+
+
+@login_required
+def blog_update_view(request, slug):
+    """
+    Volunteers can edit ONLY their own posts.
+    Admin/staff can edit any post.
+    """
+    post = get_object_or_404(BlogPost, slug=slug)
+
+    if (post.author != request.user) and (not request.user.is_staff):
+        return HttpResponseForbidden("You do not have permission to edit this post.")
+
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("blog_detail", slug=post.slug)
+    else:
+        form = BlogPostForm(instance=post)
+
+    return render(request, "blog/blog_form.html", {"form": form, "mode": "edit", "post": post})
+
+
+@login_required
+def blog_delete_view(request, slug):
+    """
+    Volunteers can delete ONLY their own posts.
+    Admin/staff can delete any post.
+    """
+    post = get_object_or_404(BlogPost, slug=slug)
+
+    if (post.author != request.user) and (not request.user.is_staff):
+        return HttpResponseForbidden("You do not have permission to delete this post.")
+
+    if request.method == "POST":
+        post.delete()
+        return redirect("blog_list")
+
+    return render(request, "blog/blog_confirm_delete.html", {"post": post})
+
+
+4) blog/urls.py
+
+from django.urls import path
+from .views import (
+    blog_list_view,
+    blog_detail_view,
+    blog_create_view,
+    blog_update_view,
+    blog_delete_view,
+)
+
+urlpatterns = [
+    path("", blog_list_view, name="blog_list"),
+    path("create/", blog_create_view, name="blog_create"),
+    path("<slug:slug>/", blog_detail_view, name="blog_detail"),
+    path("<slug:slug>/edit/", blog_update_view, name="blog_edit"),
+    path("<slug:slug>/delete/", blog_delete_view, name="blog_delete"),
+]
+
+
+
+5) blog/admin.py
+
+from django.contrib import admin
+from .models import BlogPost
+
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ("title", "author", "city", "created_at")
+    search_fields = ("title", "city", "content", "author__username")
+    list_filter = ("city", "created_at")
+    prepopulated_fields = {"slug": ("title",)}
+
+
+
+
+
+⚠️ Important settings you must add (for images)
+
+#In settings.py
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+#In main urls.py (development only)
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # ... your other paths ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
+✅ What you need next
+To make this fully work you’ll need the templates:
+blog/blog_list.html
+blog/blog_detail.html
+blog/blog_form.html
+blog/blog_confirm_delete.html
+
+
+
+
+
+
+
+
+
+
+
+
