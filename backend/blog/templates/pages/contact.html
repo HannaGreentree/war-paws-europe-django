@@ -1,0 +1,530 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="War Paws Europe (WPE) - adoption guidance and resources for helping animals affected by the war in Ukraine."
+    />
+    <title>War Paws Europe | Contact</title>
+
+    <!-- Django static CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=10" />
+    <link rel="stylesheet" href="{% static 'css/documents.css' %}?v=10" />
+    <link rel="stylesheet" href="{% static 'css/volunteers.css' %}?v=10" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <!-- Logo (left) -->
+        <a
+          class="brand"
+          href="{% url 'index' %}"
+          aria-label="War Paws Europe home"
+        >
+          <img
+            class="brand-mark"
+            src="{% static 'images/logo.png' %}"
+            alt="War Paws Europe logo"
+          />
+          <span class="brand-name">War Paws Europe</span>
+        </a>
+
+        <!-- Navigation (center) -->
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                href="{% url 'index' %}"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'documents' %}active{% endif %}"
+                href="{% url 'documents' %}"
+              >
+                Documents
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'shelters' %}active{% endif %}"
+                href="{% url 'shelters' %}"
+              >
+                Shelters
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'blo:post_list' %}active{% endif %}"
+                href="{% url 'blog:post_list' %}"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                href="{% url 'contact' %}"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Right side -->
+        <div class="header-actions">
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO IMAGE SWAP -->
+      <section
+        class="full-bleed hero-swap"
+        aria-label="Contact hero image swap"
+      >
+        <div class="story-image story-swap">
+          <img
+            class="story-base"
+            src="{% static 'images/dog-on-bed.jpg' %}"
+            alt="Rescue and adoption support for animals affected by war"
+          />
+          <img
+            class="story-overlay"
+            src="{% static 'images/dog-inside.jpg' %}"
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
+      </section>
+
+      <!-- PAGE TITLE -->
+      <section class="story-text" aria-label="Contact title">
+        <h2 class="labs-title">CONTACT WAR PAWS EUROPE</h2>
+      </section>
+
+      <!-- INTRO TEXT -->
+      <section class="contact-intro" aria-label="Contact introduction">
+        <p>
+          If you are a volunteer, shelter, or a person hoping to adopt an animal
+          from Ukraine who is experiencing difficulties adopting a specific
+          animal, or if you suspect a shelter or individual may be involved in
+          fraudulent activity, please choose the contact form that best fits
+          your situation.
+        </p>
+
+        <p>
+          Fill in the form with as much detail as possible, and we will do our
+          best to get back to you as soon as we can.
+        </p>
+
+        <p class="notice">
+          <strong>Please note:</strong> we do not accept any payments and we do
+          not have animals for adoption ourselves. We are animal lovers who
+          gathered information in one place to make adoption from war zones such
+          as Ukraine easier, safer, and more transparent.
+        </p>
+      </section>
+
+      <!-- FORM SWITCH -->
+      <section class="contact-forms" aria-label="Contact forms">
+        <div
+          class="form-switch"
+          role="tablist"
+          aria-label="Choose contact form"
+        >
+          <button
+            class="switch-btn {% if active_form == 'volunteer' or not active_form %}active{% endif %}"
+            type="button"
+            data-target="volunteer-form"
+            role="tab"
+            aria-selected="{% if active_form == 'volunteer' or not active_form %}true{% else %}false{% endif %}"
+            aria-controls="volunteer-form"
+          >
+            I am a Volunteer / Shelter
+          </button>
+
+          <button
+            class="switch-btn {% if active_form == 'adopt' %}active{% endif %}"
+            type="button"
+            data-target="adopt-form"
+            role="tab"
+            aria-selected="{% if active_form == 'adopt' %}true{% else %}false{% endif %}"
+            aria-controls="adopt-form"
+          >
+            I want to Adopt
+          </button>
+        </div>
+
+        <!-- VOLUNTEER / SHELTER FORM -->
+        <form
+          id="volunteer-form"
+          class="contact-form {% if active_form == 'adopt' %}hidden{% endif %}"
+          method="post"
+          action="{% url 'contact' %}"
+          aria-label="Volunteer or shelter form"
+          novalidate
+        >
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="volunteer" />
+
+          <h2>Volunteer / Shelter Form</h2>
+
+          <label>
+            Your full name *
+            <input
+              type="text"
+              name="vs_full_name"
+              required
+              value="{{ volunteer_data.vs_full_name|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Shelter or volunteer group name *
+            <input
+              type="text"
+              name="vs_group_name"
+              required
+              value="{{ volunteer_data.vs_group_name|default:'' }}"
+            />
+          </label>
+
+          <label>
+            How many animals are you currently taking care of? *
+            <input
+              type="number"
+              name="vs_animal_count"
+              min="1"
+              required
+              value="{{ volunteer_data.vs_animal_count|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Link to your social media account(s) *
+            <input
+              type="url"
+              name="vs_social"
+              placeholder="https://instagram.com/..."
+              required
+              value="{{ volunteer_data.vs_social|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Can you assist adopters from abroad? *
+            <select name="vs_assist_abroad" required>
+              <option value="">Please select</option>
+              <option
+                value="yes"
+                {%
+                if
+                volunteer_data.vs_assist_abroad=""
+                ="yes"
+                %}selected{%
+                endif
+                %}
+              >
+                Yes
+              </option>
+              <option
+                value="no"
+                {%
+                if
+                volunteer_data.vs_assist_abroad=""
+                ="no"
+                %}selected{%
+                endif
+                %}
+              >
+                No
+              </option>
+              <option
+                value="sometimes"
+                {%
+                if
+                volunteer_data.vs_assist_abroad=""
+                ="sometimes"
+                %}selected{%
+                endif
+                %}
+              >
+                Sometimes
+              </option>
+            </select>
+          </label>
+
+          <label>
+            Do you regularly provide receipts on your social accounts? *
+            <select name="vs_receipts" required>
+              <option value="">Please select</option>
+              <option
+                value="yes"
+                {%
+                if
+                volunteer_data.vs_receipts=""
+                ="yes"
+                %}selected{%
+                endif
+                %}
+              >
+                Yes
+              </option>
+              <option
+                value="no"
+                {%
+                if
+                volunteer_data.vs_receipts=""
+                ="no"
+                %}selected{%
+                endif
+                %}
+              >
+                No
+              </option>
+              <option
+                value="sometimes"
+                {%
+                if
+                volunteer_data.vs_receipts=""
+                ="sometimes"
+                %}selected{%
+                endif
+                %}
+              >
+                Sometimes
+              </option>
+            </select>
+          </label>
+
+          <label>
+            Your phone number *
+            <input
+              type="tel"
+              name="vs_phone"
+              required
+              value="{{ volunteer_data.vs_phone|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Your email address *
+            <input
+              type="email"
+              name="vs_email"
+              required
+              value="{{ volunteer_data.vs_email|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Your message to us *
+            <textarea name="vs_message" rows="6" required>
+{{ volunteer_data.vs_message|default:'' }}</textarea
+            >
+          </label>
+
+          <button type="submit">Send message</button>
+        </form>
+
+        <!-- ADOPTER FORM -->
+        <form
+          id="adopt-form"
+          class="contact-form {% if active_form != 'adopt' %}hidden{% endif %}"
+          method="post"
+          action="{% url 'contact' %}"
+          aria-label="Adoption support form"
+          novalidate
+        >
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="adopt" />
+
+          <h2>Adoption Support Form</h2>
+
+          <label>
+            Your full name *
+            <input
+              type="text"
+              name="ad_full_name"
+              required
+              value="{{ adopt_data.ad_full_name|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Your country *
+            <input
+              type="text"
+              name="ad_country"
+              required
+              value="{{ adopt_data.ad_country|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Your phone number *
+            <input
+              type="tel"
+              name="ad_phone"
+              required
+              value="{{ adopt_data.ad_phone|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Your email address *
+            <input
+              type="email"
+              name="ad_email"
+              required
+              value="{{ adopt_data.ad_email|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Name of the shelter or volunteer you refer to *
+            <input
+              type="text"
+              name="ad_reference"
+              required
+              value="{{ adopt_data.ad_reference|default:'' }}"
+            />
+          </label>
+
+          <label>
+            Have you tried to resolve the issue directly? *
+            <select name="ad_tried_resolve" required>
+              <option value="">Please select</option>
+              <option
+                value="yes"
+                {%
+                if
+                adopt_data.ad_tried_resolve=""
+                ="yes"
+                %}selected{%
+                endif
+                %}
+              >
+                Yes
+              </option>
+              <option
+                value="no"
+                {%
+                if
+                adopt_data.ad_tried_resolve=""
+                ="no"
+                %}selected{%
+                endif
+                %}
+              >
+                No
+              </option>
+              <option
+                value="partly"
+                {%
+                if
+                adopt_data.ad_tried_resolve=""
+                ="partly"
+                %}selected{%
+                endif
+                %}
+              >
+                Partly
+              </option>
+            </select>
+          </label>
+
+          <label>
+            Your message to us *
+            <textarea name="ad_message" rows="6" required>
+{{ adopt_data.ad_message|default:'' }}</textarea
+            >
+          </label>
+
+          <button type="submit">Send message</button>
+        </form>
+
+        {% if messages %}
+        <div class="contact-messages" aria-label="Form messages">
+          {% for message in messages %}
+          <p class="notice">{{ message }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="footer-brand" href="{% url 'index' %}">
+          <img
+            class="footer-brand-mark"
+            src="{% static 'images/logo.png' %}"
+            alt="War Paws Europe logo"
+          />
+        </a>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <ul class="footer-nav-list">
+            <li>
+              <a class="footer-nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'documents' %}"
+                >Documents</a
+              >
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'blog:post_list' %}">Blog</a>
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'shelters' %}"
+                >Shelters</a
+              >
+            </li>
+            <li>
+              <a class="footer-nav-link active" href="{% url 'contact' %}"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <form class="footer-search" method="get" action="#">
+          <input
+            type="search"
+            name="q"
+            placeholder="Search"
+            aria-label="Search this site"
+          />
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copy">&copy; <span id="year"></span> War Paws Europe</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}?v=10" defer></script>
+  </body>
+</html>

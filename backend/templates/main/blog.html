@@ -1,147 +1,331 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="War Paws International - blog posts from volunteers helping animals in Ukraine."
+      content="War Paws Europe (WPE) - adoption guidance and resources for helping animals affected by the war in Ukraine."
     />
-    <title>War Paws International | Blog</title>
+    <title>War Paws Europe | Blog</title>
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <!-- Global site styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=10" />
+
+    <!-- If your cards are styled here, keep it -->
+    <link rel="stylesheet" href="{% static 'css/documents.css' %}?v=10" />
+
+    <!-- If you still use some shared section styles here, keep it -->
+    <link rel="stylesheet" href="{% static 'css/volunteers.css' %}?v=10" />
   </head>
 
   <body>
     <!-- HEADER -->
     <header class="site-header">
       <div class="header-inner">
-        <!-- Logo -->
-        <a class="brand" href="{% url 'home' %}">
+        <!-- Logo (left) -->
+        <a
+          class="brand"
+          href="{% url 'index' %}"
+          aria-label="War Paws Europe home"
+        >
           <img
-            src="{% static 'images/logo.png' %}"
-            alt="War Paws International logo"
             class="brand-mark"
+            src="{% static 'images/logo.png' %}"
+            alt="War Paws Europe logo"
           />
-          <span class="brand-name">War Paws International</span>
+          <span class="brand-name">War Paws Europe</span>
         </a>
 
-        <!-- Navigation -->
-        <nav class="main-nav">
+        <!-- Navigation (center) -->
+         <nav class="main-nav" id="mainNav" aria-label="Main navigation">
           <ul class="nav-list">
-            <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li><a class="nav-link" href="{% url 'documents' %}">Documents</a></li>
-            <li><a class="nav-link" href="{% url 'shelters' %}">Shelters</a></li>
-            <li><a class="nav-link active" href="{% url 'blog' %}">Blog</a></li>
-            <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                href="{% url 'index' %}"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'documents' %}active{% endif %}"
+                href="{% url 'documents' %}"
+              >
+                Documents
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'shelters' %}active{% endif %}"
+                href="{% url 'shelters' %}"
+              >
+                Shelters
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'blog:post_list' %}active{% endif %}"
+                href="{% url 'blog:post_list' %}"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                href="{% url 'contact' %}"
+              >
+                Contact
+              </a>
+            </li>
           </ul>
         </nav>
 
-        <!-- Search -->
+        <!-- Right side -->
         <div class="header-actions">
-          <form class="site-search" method="get" action="{% url 'blog' %}">
-            <label class="sr-only" for="q">Search blog</label>
-            <input id="q" type="search" name="q" placeholder="Search blog" />
-          </form>
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+          >
+            ☰
+          </button>
         </div>
       </div>
     </header>
 
-    <!-- MAIN -->
     <main>
-      <!-- PAGE INTRO -->
-      <section class="page-header">
-        <div class="page-inner">
-          <h1>Volunteer Blog</h1>
-          <p>
-            Updates from volunteers and shelters in Ukraine. Some posts may
-            include animals currently looking for a home.
-          </p>
+      <!-- HERO IMAGE -->
+      <section class="full-bleed hero-swap" aria-label="Blog hero image swap">
+        <div class="story-image story-swap">
+          <img
+            class="story-base"
+            src="{% static 'images/dog-sleeping.jpg' %}"
+            alt="Volunteer updates and rescue stories"
+          />
+          <img
+            class="story-overlay"
+            src="{% static 'images/dog-lady.jpg' %}"
+            alt=""
+            aria-hidden="true"
+          />
         </div>
       </section>
 
-      <!-- BLOG POSTS -->
-      <section class="blog">
+      <!-- INTRO TEXT -->
+      <section class="story-text" aria-label="Volunteer updates intro">
+        <h2 class="labs-title">UPDATES FROM ANIMAL VOLUNTEERS</h2>
+
+        <p>
+          Dear volunteers, we encourage you to register on this website and
+          share your news and updates, animals available for adoption, and any
+          issues you are facing. Only together can we attract attention from the
+          international community, large animal protection organisations, and
+          other groups who can help address the serious animal crisis in
+          Ukraine.
+        </p>
+      </section>
+
+      <!-- BLOG POSTS (your cards) -->
+      <section class="blog" aria-label="Volunteer updates posts">
         <div class="blog-inner">
-          <!-- Blog Post -->
+          <!-- Blog Post Card 1 -->
           <article class="blog-post">
             <div class="blog-image">
               <img
-                src="{% static 'images/logo.png' %}"
-                alt="War Paws International"
+                src="{% static 'images/lady-saving-dog.jpg' %}"
+                alt="Rescued dog in Ukraine"
               />
             </div>
 
             <div class="blog-content">
               <h2>Dog rescued in Kherson region</h2>
+
               <p class="blog-meta">
                 Posted by Volunteer Anna · 12 Jan 2026 · Kherson
               </p>
+
               <p class="blog-excerpt">
                 This dog was found near a destroyed house after shelling. He is
                 safe now and looking for a permanent home abroad.
               </p>
-              <a class="btn" href="#">Read more</a>
+
+              <a class="btn" href="{% url 'blog:post_list' %}">Read more</a>
             </div>
           </article>
 
-          <!-- Blog Post -->
+          <!-- Blog Post Card 2 -->
           <article class="blog-post">
             <div class="blog-image">
               <img
-                src="{% static 'images/logo.png' %}"
-                alt="War Paws International"
+                src="{% static 'images/cat-on-chair.jpg' %}"
+                alt="Cat rescued near an apartment block"
               />
             </div>
 
             <div class="blog-content">
               <h2>Cat found near bombed apartment block</h2>
+
               <p class="blog-meta">
                 Posted by Lviv Animal Rescue · 5 Jan 2026 · Lviv
               </p>
+
               <p class="blog-excerpt">
                 This cat survived several days alone in the ruins. She has
                 passed initial vet checks and is recovering.
               </p>
-              <a class="btn" href="#">Read more</a>
+
+              <a class="btn" href="{% url 'blog:post_list' %}">Read more</a>
             </div>
           </article>
-        </div>
-      </section>
 
-      <!-- NOTE -->
-      <section class="blog-note">
-        <div class="blog-inner">
-          <p>
-            Blog posts are created by registered volunteers. War Paws
-            International moderates content and may remove posts that do not
-            meet safety or ethical guidelines.
-          </p>
+          <!-- Blog Post Card 3 -->
+          <article class="blog-post">
+            <div class="blog-image">
+              <img
+                src="{% static 'images/dogs-store.jpg' %}"
+                alt="Stray dogs sleeping inside a shop"
+              />
+            </div>
+
+            <div class="blog-content">
+              <h2>Stores opening doors to strays during freezing nights</h2>
+
+              <p class="blog-meta">
+                Posted by Local volunteers · Jan 2026 · Ukraine
+              </p>
+
+              <p class="blog-excerpt">
+                With temperatures dropping to –20°C, some stores in Ukraine have
+                been doing something simple — and powerful. They’ve been opening
+                their doors to stray animals, letting them sleep inside to
+                survive the freezing nights. Shop owners and locals are offering
+                warmth, food, and shelter, turning businesses into temporary
+                safe havens. Just people choosing compassion when it matters
+                most.
+              </p>
+
+              <a class="btn" href="{% url 'blog:post_list' %}">Read more</a>
+            </div>
+          </article>
+
+          <!-- Blog Post Card 4 -->
+          <article class="blog-post">
+            <div class="blog-image">
+              <img
+                src="{% static 'images/animals-adoption.jpg' %}"
+                alt="Stray animals in winter conditions"
+              />
+            </div>
+
+            <div class="blog-content">
+              <h2>Winter survival is getting harder for strays</h2>
+
+              <p class="blog-meta">
+                Posted by Shelter teams · Jan 2026 · South Ukraine
+              </p>
+
+              <p class="blog-excerpt">
+                Russian strikes targeting energy infrastructure are causing
+                unprecedented hardship to some of Ukraine's most vulnerable
+                creatures amid the harsh winter. Volunteers report stray dogs
+                and cats dying from cold and from lack of unfrozen drinking
+                water. Spaces beneath buildings that used to be warm are now
+                dangerously cold, leaving many animals with nowhere to turn.
+              </p>
+
+              <a class="btn" href="{% url 'blog:post_list' %}">Read more</a>
+            </div>
+          </article>
+
+          <!-- Blog Post Card 5 -->
+          <article class="blog-post">
+            <div class="blog-image">
+              <img
+                src="{% static 'images/cats-snow.jpg' %}"
+                alt="Cats eating food placed on snow"
+              />
+            </div>
+
+            <div class="blog-content">
+              <h2>Emergency feeding points during cold snaps</h2>
+
+              <p class="blog-meta">
+                Posted by volunteer groups · Jan 2026 · Ukraine
+              </p>
+
+              <p class="blog-excerpt">
+                Some volunteer teams are creating emergency feeding points and
+                rotating routes to reach animals when roads are dangerous. Small
+                changes — insulated bowls, warm water, consistent feeding times
+                — can make survival possible.
+              </p>
+
+              <a class="btn" href="{% url 'blog:post_list' %}">Read more</a>
+            </div>
+          </article>
         </div>
       </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-top">
-        <a class="brand footer-brand" href="{% url 'home' %}">
+      <div class="footer-inner">
+        <a class="footer-brand" href="{% url 'index' %}">
           <img
+            class="footer-brand-mark"
             src="{% static 'images/logo.png' %}"
-            alt="War Paws International logo"
-            class="brand-mark"
+            alt="War Paws Europe logo"
           />
-          <span class="brand-name">War Paws International</span>
         </a>
+
+         <nav class="footer-nav" aria-label="Footer navigation">
+          <ul class="footer-nav-list">
+            <li>
+              <a class="footer-nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'documents' %}"
+                >Documents</a
+              >
+            </li>
+            <li>
+              <a class="footer-nav-link active" href="{% url 'blog:post_list' %}"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'shelters' %}"
+                >Shelters</a
+              >
+            </li>
+            <li>
+              <a class="footer-nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+
+        <form class="footer-search" action="#" method="get">
+          <input
+            type="search"
+            name="q"
+            placeholder="Search"
+            aria-label="Search this page"
+          />
+        </form>
       </div>
 
       <div class="footer-bottom">
-        <p class="copy">
-          &copy; <span id="year"></span> War Paws International
-        </p>
+        <p class="copy">&copy; <span id="year"></span> War Paws Europe</p>
       </div>
     </footer>
 
-    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/main.js' %}?v=10" defer></script>
   </body>
 </html>

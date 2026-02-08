@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="War Paws Europe (WPE) - adoption guidance and resources for helping animals affected by the war in Ukraine."
+    />
+    <title>War Paws Europe | Home</title>
+
+    <link rel="stylesheet" href="css/styles.css?v=5">
+<script src="js/main.js?v=5" defer></script>
+
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <!-- Logo (left) -->
+        <a class="brand" href="index.html" aria-label="War Paws Europe home">
+          <img
+            class="brand-mark"
+            src="images/logo.png"
+            alt="War Paws Europe logo"
+          />
+          <span class="brand-name">War Paws Europe</span>
+        </a>
+
+        <!-- Navigation (center) -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link active" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="documents.html">Documents</a></li>
+            <li>
+              <a class="nav-link" href="adopt-from-warzones.html"
+                >Adopt from Warzones</a
+              >
+            </li>
+            <li><a class="nav-link" href="blog.html">Blog</a></li>
+            <li><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right side -->
+        <div class="header-actions">
+          <form
+            class="site-search"
+            action="documents.html"
+            method="get"
+            aria-label="Site search"
+          >
+            <label class="sr-only" for="q">Search</label>
+            <input id="q" name="q" type="search" placeholder="Search" />
+          </form>
+
+          <button class="menu-btn" type="button" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <!-- Mask video (hidden, used by canvas reveal) -->
+
+      <video
+        id="dripMaskVideo"
+        class="mask-video"
+        preload="auto"
+        muted
+        playsinline
+      >
+        <source src="videos/drip-mask.mp4" type="video/mp4" />
+      </video>
+
+      <!-- HERO: 4 portrait images full width -->
+      <section class="hero" aria-label="Hero images">
+        <div class="hero-grid" id="heroGrid">
+          <!-- Base images -->
+          <figure class="hero-tile">
+            <img src="images/hero-base-1.jpg" alt="Animal in war zone" />
+          </figure>
+          <figure class="hero-tile">
+            <img src="images/hero-base-2.jpg" alt="Animal in war zone" />
+          </figure>
+          <figure class="hero-tile">
+            <img src="images/hero-base-3.jpg" alt="Animal in war zone" />
+          </figure>
+          <figure class="hero-tile">
+            <img src="images/hero-base-4.jpg" alt="Animal in war zone" />
+          </figure>
+
+          <!-- Overlay images (canvas-masked) -->
+          <div class="hero-overlay" aria-hidden="true">
+            <figure class="hero-tile hero-overlay-tile">
+              <img class="overlay-img" src="images/hero-war-1.jpg" alt="" />
+              <canvas class="overlay-canvas" aria-hidden="true"></canvas>
+            </figure>
+
+            <figure class="hero-tile hero-overlay-tile">
+              <img class="overlay-img" src="images/hero-war-2.jpg" alt="" />
+              <canvas class="overlay-canvas" aria-hidden="true"></canvas>
+            </figure>
+
+            <figure class="hero-tile hero-overlay-tile">
+              <img class="overlay-img" src="images/hero-war-3.jpg" alt="" />
+              <canvas class="overlay-canvas" aria-hidden="true"></canvas>
+            </figure>
+
+            <figure class="hero-tile hero-overlay-tile">
+              <img class="overlay-img" src="images/hero-war-4.jpg" alt="" />
+              <canvas class="overlay-canvas" aria-hidden="true"></canvas>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- HERO CONTENT -->
+      <section class="hero-content">
+        <div class="hero-content-inner">
+          <div class="hero-copy">
+            <h1>From Sirens to Safety</h1>
+            <p>
+              The war in Ukraine is the largest war in Europe and animal crisis
+              since World War II. Thousands of pets have lost their owners.
+              Animals are living in constant danger — exposed to cold, hunger,
+              stress, and daily explosions. It is not too late to save an
+              abandoned cat or dog from the war zones of Ukraine. Thousands of
+              pets have lost their owners. Many were left behind during
+              evacuation, while others were already living on the streets. These
+              animals survive under bombardment, without regular access to food
+              or water. Temperatures can fall to –20°C, and weakened animals
+              face constant threats, including attacks from other animals. By
+              choosing to adopt a pet from a war zone, you are not only giving
+              an animal a home — you are giving them safety, warmth, and a
+              chance to live.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn" href="documents.html">View Documents</a>
+              <a class="btn" href="shelters.html">Find Shelters</a>
+              <a class="btn" href="blog.html">Read Blog</a>
+            </div>
+          </div>
+
+          <aside class="live-panel" aria-label="Live war day counter">
+            <div class="live-label">LIVE</div>
+            <div class="live-number" id="warDayNumber">—</div>
+            <div class="live-line">Day of Russian war</div>
+            <div class="live-line">against Ukraine</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECTION A -->
+      <section class="split split-a">
+        <div class="split-inner">
+          <div class="split-media">
+            <img
+              src="images/section-volunteers.jpg"
+              alt="Volunteers helping animals"
+            />
+          </div>
+          <div class="split-text">
+            <h2>Created by volunteers and animal lovers</h2>
+            <p>
+              War Paws Europe was created by volunteers who want to make
+              adoption and pet travel clearer, safer, and more achievable.
+            </p>
+            <p>
+              Many animals are left behind during evacuations. Some survive near
+              ruined buildings and explosions. This site collects practical
+              steps, not just stories.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION B -->
+      <section class="split split-b">
+        <div class="split-inner">
+          <div class="split-text">
+            <h2>Who this website is for</h2>
+            <p>
+              People abroad who want to adopt from Ukraine, and Ukrainians who
+              need guidance to travel with their own pets. We gather documents,
+              contacts, and examples in one place.
+            </p>
+          </div>
+          <div class="split-media">
+            <img
+              src="images/section-who-for.jpg"
+              alt="Person with a rescued animal"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Q&A PREVIEW -->
+      <section class="qa-preview">
+        <div class="qa-inner">
+          <h2>Questions &amp; Answers</h2>
+          <div class="qa-item">
+            <h3>Where should I start?</h3>
+            <p>
+              Start by choosing a shelter or volunteer. We provide links so you
+              can verify their work and contact them directly.
+            </p>
+            <a class="link" href="documents.html">Read more in Documents →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-bottom">
+        <p class="disclaimer">
+          War Paws Europe provides links and guidance. Please verify shelters
+          and volunteers independently before sending money or sharing personal
+          information.
+        </p>
+        <p class="copy">&copy; <span id="year"></span> War Paws Europe</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

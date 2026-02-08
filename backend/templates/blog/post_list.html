@@ -1,0 +1,76 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>War Paws Europe | Blog</title>
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=10" />
+  <link rel="stylesheet" href="{% static 'css/documents.css' %}?v=10" />
+  <link rel="stylesheet" href="{% static 'css/volunteers.css' %}?v=10" />
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{% url 'index' %}">
+      <img src="{% static 'images/logo.png' %}" alt="War Paws Europe logo" />
+      <span>War Paws Europe</span>
+    </a>
+
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'documents' %}">Documents</a></li>
+        <li><a href="{% url 'shelters' %}">Shelters</a></li>
+        <li><a class="active" href="{% url 'blog:post_list' %}">Blog</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <section class="story-text">
+    <h1>Blog</h1>
+  </section>
+
+  <section class="blog">
+    <div class="blog-inner">
+
+      {% for post in posts %}
+        <article class="blog-post">
+          <div class="blog-content">
+            <h2>{{ post.title }}</h2>
+
+            <p class="blog-excerpt">
+              {{ post.content|truncatewords:30 }}
+            </p>
+
+            <a class="btn" href="{% url 'blog:post_detail' post.pk %}">
+              Read more
+            </a>
+          </div>
+        </article>
+      {% empty %}
+        <p>No posts yet.</p>
+      {% endfor %}
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; War Paws Europe</p>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}" defer></script>
+</body>
+</html>

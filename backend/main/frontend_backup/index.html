@@ -1,0 +1,302 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="War Paws Europe (WPE) - adoption guidance and resources for helping animals affected by the war in Ukraine."
+    />
+    <title>War Paws Europe | Home</title>
+
+    <link rel="stylesheet" href="css/styles.css?v=10" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <!-- Logo (left) -->
+        <a class="brand" href="index.html" aria-label="War Paws Europe home">
+          <img class="brand-mark" src="images/logo.png" alt="War Paws Europe logo" />
+          <span class="brand-name">War Paws Europe</span>
+        </a>
+
+        <!-- Navigation (center) -->
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link active" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="documents.html">Documents</a></li>
+            <li><a class="nav-link" href="shelters.html">Shelters</a></li>
+            <li><a class="nav-link" href="blog.html">Blog</a></li>
+            <li><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right side -->
+        <div class="header-actions">
+          <button
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <!-- HERO: 4 portrait images full width -->
+      <section class="hero" aria-label="Hero photos">
+        <div class="hero-grid" id="heroGrid">
+          <!-- Base images -->
+          <figure class="hero-photos">
+            <img src="images/home-hero-before-1.jpg" alt="Cat on couch" />
+          </figure>
+          <figure class="hero-photos">
+            <img src="images/home-hero-before-2.jpg" alt="Cat on bed" />
+          </figure>
+          <figure class="hero-photos">
+            <img src="images/home-hero-before-3.jpg" alt="Dog with human" />
+          </figure>
+          <figure class="hero-photos">
+            <img src="images/home-hero-before-4.jpg" alt="Cat on shoulder" />
+          </figure>
+
+          <!-- Overlay images (slide down together) -->
+          <div class="hero-overlay" aria-hidden="true">
+            <figure class="hero-overlay-photos" data-order="2">
+              <img class="overlay-img" src="images/home-hero-now-1.jpg" alt="" />
+            </figure>
+
+            <figure class="hero-overlay-photos" data-order="1">
+              <img class="overlay-img" src="images/home-hero-now-2.jpg" alt="" />
+            </figure>
+
+            <figure class="hero-overlay-photos" data-order="4">
+              <img class="overlay-img" src="images/home-hero-now-3.jpg" alt="" />
+            </figure>
+
+            <figure class="hero-overlay-photos" data-order="3">
+              <img class="overlay-img" src="images/home-hero-now-4.jpg" alt="" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- HERO CONTENT -->
+      <section class="hero-content">
+        <div class="hero-content-inner">
+          <div class="hero-copy">
+            <h1>FROM SIRENS TO SAFETY</h1>
+            <p>
+              Russian aggression against Ukraine is the largest conflict in Europe since World War II.
+              Animals are living in constant danger — exposed to hunger, daily explosions, stress and cold.
+              Thousands of pets have lost their owners and live on strits now. Many animals were left behind during 
+              evacuation,
+              while others were already living on the streets. There are multiple evidence of sadists actions 
+              towards Ukraiinan animals done by Russian soldiers. Internet is full of blurring videos and photos.
+              By supporting animals from war zones you give these poor souls a chance to live. 
+              
+            </p>
+ 
+            <div class="hero-actions">
+              <a class="btn" href="documents.html">Transport Animals</a>
+              <a class="btn" href="shelters.html">Find your Pet</a>
+              <a class="btn" href="blog.html">News from Volonteers</a>
+              <a class="btn" href="documents.html">FAQ</a>
+            </div>
+          </div>
+
+          <aside class="live-panel" aria-label="Live war day counter">
+            <div class="live-label">LIVE DAY COUNTER</div>
+            <div class="live-number" id="warDayNumber">—</div>
+            <div class="live-line">DAY OF RUSSIAN WAR</div>
+            <div class="live-line">AGAINST UKRAINE</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECTION A -->
+      <section class="story-block">
+        <div class="story-image story-swap">
+          <img class="story-base" src="images/cat-dog-home.jpg" alt="Cat and dog at home" />
+          <img class="story-overlay" src="images/section-volunteers.jpg" alt="" aria-hidden="true" />
+        </div>
+
+        <section class="hero-stats">
+          <div class="hero-stats-inner">
+            <div class="hero-stat">
+              <span class="stat-number">7M+</span>
+              <p class="stat-text">UKRAINIANS FLED THE COUNTRY</p>
+            </div>
+
+            <div class="hero-stat">
+              <span class="stat-number">3.8M+</span>
+              <p class="stat-text">UKRAINIANS INTERNALLY DISPLACED</p>
+            </div>
+
+            <div class="hero-stat">
+              <span class="stat-number">85K+</span>
+              <p class="stat-text">UKRAINIAN PEOPLE HAD BEEN KILLED</p>
+            </div>
+
+            <div class="hero-stat">
+              <span class="stat-number">6M+</span>
+              <p class="stat-text">UKRAINIAN ANIMALS HAD BEEN KILLED</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="story-text">
+          <h1>THIS WEBSITE WAS CREATED BY VOLUNTEERS AND ANIMAL LOVERS</h1>
+
+          <p>
+            At least 140 000 dogs and cats in Ukraine need homes or ongoing care.
+            We who want to make pet adoption and animal transport clearer, safer, and more achievable.
+          </p>
+
+          <p>
+            This website was built by volunteers who care deeply about animals affected by war and displacement.
+            It has been four years since Russia launched its full-scale invasion of Ukraine. Many regions of
+            Ukraine are under daily shelling and missile attacks.
+          </p>
+
+          <p>
+            As people are forced to flee the country, many must leave their pets behind. Thousands of pet owners
+            have been killed, and countless animals are left on the streets to survive alone. There is little to no
+            food, constant danger from explosions, and extreme conditions. During harsh Ukrainian winters,
+            temperatures can drop to −20°C, leaving animals exposed to freezing cold, bombs, and ongoing destruction.
+          </p>
+          <p> 
+            We would like to raise awareness about animal ongoing crisis in Ukraine. Animal shelters across Ukraine 
+            are severely overcrowded with cats and dogs. Many families already
+            care for three, five, or even more animals in their own homes, yet this is still not enough to
+            provide safe and loving families for all animals in need. 
+            Animals are often temporarily sheltered in public places such as shops, bacements, and
+            underground stations. 
+          </p>
+          <p>
+            Some Ukrainian cities or part of cities do not exixt anymore.
+            People lost their homes, jobs, moved to other countries or regions within Ukraine trying to
+            cope with their own war situation. 
+          </p>
+          <p>
+            Countless reports confirmed. Whereever Russian army is present, animals are
+            suffering the most, including being tortured. 
+            Evidence of animal cruelty by Russian soldiers
+            keeps emerging. Animals are being used as bait, shot, burned alive, and killed in horrific ways. 
+            Mariupol, Bucha, Irpin, Kharkiv, Borodyanka are just some of the cities wherene such atrocities 
+            have been already reported. With every passing day, more evidence comes to light. If Russian manage 
+            to occupy more territories, more innocent animals will suffer the same fate. 
+          </p>
+           
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="story-image story-swap">
+          <img class="story-b" src="images/cats-in-kitchen.jpg" alt="Cats in a kitchen" />
+          <img class="story-overlay" src="images/section-who-for.jpg" alt="" aria-hidden="true" />
+        </div>
+
+        <div class="story-text">
+          <h1>WHO CAN FIND THIS WEBSITE HELPFUL</h1>
+
+          <p>
+            This website is for people from different parts of the world who want to adopt animals from war zone
+            like Ukraine, as well as for Ukrainians who need guidance on how to travel safely with their own pets.
+          </p>
+
+          <p>
+            We bring together essential documents, trusted contacts, and real examples in one place. Many animals are
+            left behind during evacuations, and this platform focuses on practical steps, not just stories.
+          </p>
+
+          <p>
+            Through this website, we also aim to draw greater attention from animal protection organisations and
+            encourage them to speak more openly and consistently about the animal crisis in Ukraine. This is a
+            humanitarian and environmental tragedy that our planet has not witnessed on this scale for decades.
+          </p>
+
+          <p>
+            Human life is vital — and animal life matters too. We hope to inspire and engage more people who have
+            the influence to elevate the animal crisis in Ukraine to the highest level of attention, working through
+            organisations that may not be able to end the war, but can help reduce the suffering of animals caught in it.
+          </p>
+
+          <p>
+            <strong>
+              War Paws Europe (WPE) provides links and guidance. Please verify shelters and volunteers independently
+              before sending money or sharing personal information.
+            </strong>
+          </p>
+        </div>
+      </section>
+
+      <section class="story-block">
+        <div class="story-image story-swap">
+          <img class="story-b" src="images/dog-human.jpg" alt="Dog and human" />
+          <img class="story-overlay" src="images/dog-itself.jpg" alt="" aria-hidden="true" />
+        </div>
+      </section>
+
+      <!-- Q&A PREVIEW -->
+      <section class="qa-preview">
+        <div class="qa-inner">
+          <h2 class="qa-inner-h2">FAQ</h2>
+
+          <div class="qa-item">
+            <h3>I would like to adopt an animal from a war zone. Where should I start?</h3>
+            <p>
+              We provide a list of shelters, organizations, and private individuals in Ukraine who are
+              helping animals affected by the war. The list includes their websites, social media accounts,
+              email addresses, or phone numbers (where available). These dedicated rescuers are actively seeking
+              people like you who are able to adopt a cat or dog from a war zone and give them a safe, loving home.
+              Start by choosing a shelter or volunteer. We provide links so you can verify their work and contact them directly.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn" href="documents.html">Read more</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="footer-brand" href="index.html">
+          <img class="footer-brand-mark" src="images/logo.png" alt="War Paws Europe logo" />
+        </a>
+
+        <nav class="footer-nav">
+          <ul class="footer-nav-list">
+            <li><a class="footer-nav-link" href="index.html">Home</a></li>
+            <li><a class="footer-nav-link" href="documents.html">Documents</a></li>
+            <li><a class="footer-nav-link" href="blog.html">Blog</a></li>
+            <li><a class="footer-nav-link" href="shelters.html">Shelters</a></li>
+            <li><a class="footer-nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <form class="footer-search">
+          <input type="search" placeholder="Search" aria-label="Search this page" />
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copy">&copy; <span id="year"></span> War Paws Europe</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js?v=10" defer></script>
+  </body>
+</html>
+

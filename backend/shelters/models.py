@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Shelter(models.Model):
-    # Dropdown options
+ 
     TYPE_CHOICES = (
         ('shelter', 'Animal Shelter'),
         ('vet', 'Veterinary Clinic'),
@@ -30,3 +30,9 @@ class Shelter(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.city})"
+    
+
+
+
+
+    
