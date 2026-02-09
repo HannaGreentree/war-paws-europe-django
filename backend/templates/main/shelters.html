@@ -1,4 +1,4 @@
-{# templates/pages/shelters.html #} {% load static %}
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -493,7 +493,9 @@
               >
             </li>
             <li>
-              <a class="footer-nav-link" href="{% url 'blog:post_list' %}">Blog</a>
+              <a class="footer-nav-link" href="{% url 'blog:post_list' %}"
+                >Blog</a
+              >
             </li>
             <li>
               <a class="footer-nav-link active" href="{% url 'shelters' %}"
