@@ -1,108 +1,283 @@
-War Paws Europe – Full Stack Django Application
-Project Overview
-War Paws Europe is a full-stack web application developed as part of my Web Programming Essentials project.
-The purpose of this project is to create a database-driven web application that allows users to:
-Share information about animal shelters and rescues
-Publish blog updates about animals affected by war
-Access structured and reliable information in one place
-This project demonstrates my ability to design, build, deploy, and document a complete full-stack application using Django and relational databases.
+# War Paws Europe (WPE) – Full Stack Django Application
 
-CSS3 (custom styling and responsive layout)
-JavaScript
-Back End
-Python 3
-Django Framework
-Database
-PostgreSQL (production)
-Django ORM for data modelling and queries
-Tools and Deployment
-Git & GitHub (version control)
-Render (cloud hosting)
-Gunicorn (production server)
-WhiteNoise (static file handling)
-Application Features
-Multi-page Django website
-Database-driven blog section
-Database-driven shelter listings
-Responsive design for desktop, tablet, and mobile
-Navigation menu on all pages
-Static files (CSS, images, JavaScript) served correctly in production
-Database Design and Schema
-The application uses a relational database designed to fit the project domain.
-Blog Post Model
-title
-slug
-author (ForeignKey → User)
-content
-image (optional)
-created_on
-status (Draft / Published)
+---
+
+##  Project Overview
+
+War Paws Europe is a full-stack web application developed as part of the Web Programming Essentials module.
+
+The application allows users to:
+
+- Share blog updates about animals affected by war
+- Store and manage information about animal shelters and rescues
+- Access organised and structured data in one central system
+
+This project demonstrates my ability to design, build, deploy and document a full relational database web application using Django.
+
+---
+
+##  Project Purpose and Rationale
+
+The war in Ukraine has created serious risks for animals. Many volunteers and organisations help animals, but information is often scattered.
+
+This project was created to:
+
+- Centralise information about shelters and rescues
+- Allow volunteers to publish blog updates
+- Provide structured and reliable information
+- Demonstrate full-stack development skills
+
+### Target Audience
+
+- Animal rescue volunteers  
+- NGOs  
+- Donors  
+- International adopters  
+- People interested in animal welfare  
+
+The application allows users to contribute data and benefit from shared community information.
+
+---
+
+##  Technologies Used
+
+### Frontend
+- HTML5 (semantic structure)
+- CSS3 (custom styling and responsiveness)
+- JavaScript (interactive elements)
+
+### Backend
+- Python 3
+- Django 4.2
+
+### Database
+- SQLite (development)
+- PostgreSQL (production on Render)
+
+### Deployment
+- Render (cloud hosting)
+- Gunicorn (WSGI server)
+- WhiteNoise (static file handling)
+
+### Version Control
+- Git
+- GitHub
+
+---
+
+##  Database Design
+
+The application uses a relational database.
+
+### Blog Model (Post)
+
+Fields:
+- `title` (CharField, unique)
+- `slug` (SlugField, unique)
+- `author` (ForeignKey to User)
+- `content` (TextField)
+- `image` (ImageField)
+- `created_on` (DateTimeField)
+- `status` (Draft / Published)
+
 Relationship:
-One user can create many blog posts, but each post has one author.
-Shelter Model
-name
-city
-country
-org_type (shelter, veterinary clinic, transport company)
-website
-description
-added_by (ForeignKey → User)
+- One User → Many Posts
+
+---
+
+### Shelter Model
+
+Fields:
+- `name`
+- `city`
+- `country` (choice field)
+- `org_type` (choice field)
+- `website`
+- `description`
+- `added_by` (ForeignKey to User)
+
 Relationship:
-One user can add many shelters, but each shelter is added by one user.
-CRUD Functionality
-The application implements full CRUD functionality:
-Create: New blog posts and shelters can be added via the Django admin panel
-Read: Blog posts and shelter data are displayed on the website
-Update: Existing records can be edited in the admin panel
-Delete: Records can be removed from the database
-All changes are saved to the database and are immediately reflected in the user interface.
-User Experience, Accessibility, and Responsiveness
-Clear navigation structure across all pages
-Consistent layout and styling
-Responsive design using CSS
-Semantic HTML elements for accessibility
-Content organised in a clear and readable way
-Security Features
-Secret key stored using environment variables
-Debug mode disabled in production
-Database credentials hidden using environment variables
-No sensitive information committed to GitHub
-Allowed hosts restricted for production deployment
-Testing
-Testing was carried out manually and included:
-Navigation testing across all pages
-Blog and shelter CRUD testing
-Database connection testing
-Responsive layout testing using browser developer tools
-Deployment testing to ensure the live site matches local development
-Any issues found during testing were fixed before final submission.
-Deployment
-The project is deployed using Render.
-Deployment Process
-Project pushed to GitHub
-PostgreSQL database created on Render
-Environment variables configured (SECRET_KEY, DATABASE_URL, DEBUG, ALLOWED_HOSTS)
-Static files collected using collectstatic
-Application deployed using Gunicorn
-Live Application
-👉 https://war-paws-europe-django.onrender.com
-Project Structure (Simplified)
-backend/
-├── manage.py
-├── war_paws_europe/
-├── blog/
-├── shelters/
-├── main/
-├── templates/
-├── static/
-├── media/
-Attribution
-All code was written by the author for this project
-Images are used for educational purposes only
-External libraries are listed in requirements.txt
-Author
-Hanna Greentree
-Web Programming Essentials / Full Stack Development
-2025
-License
-This project was created for educational purposes only.
+- One User → Many Shelters
+
+---
+
+##  CRUD Functionality
+
+The project implements full CRUD functionality.
+
+### Blog
+- Create posts (admin panel)
+- Read posts (list and detail views)
+- Update posts (admin edit)
+- Delete posts (admin delete)
+
+### Shelters
+- Create shelter records
+- Read shelter list
+- Update shelter data
+- Delete shelter records
+
+All changes are immediately reflected in the user interface.
+
+---
+
+##  Frontend Design & UX
+
+The application follows UX principles:
+
+- Clear navigation menu
+- Logical page structure
+- Consistent styling
+- Responsive layout
+- Accessible image alt text
+- Mobile-friendly design
+
+The purpose of each page is clear to new users.
+
+---
+
+##  Security Features
+
+Security measures implemented:
+
+- SECRET_KEY stored in environment variables
+- DEBUG disabled in production
+- ALLOWED_HOSTS configured
+- No passwords stored in repository
+- DATABASE_URL stored securely in Render
+- Admin restricted to superusers
+- CSRF protection enabled
+- Form validation handled by Django
+
+---
+
+##  Deployment
+
+The application is deployed on Render.
+
+### Deployment Steps
+
+1. Code pushed to GitHub
+2. PostgreSQL database created on Render
+3. Web service created on Render
+4. Environment variables configured:
+   - SECRET_KEY
+   - DEBUG
+   - ALLOWED_HOSTS
+   - DATABASE_URL
+5. Start command configured:
+
+6. 6. Migrations applied
+7. Static files collected
+
+The deployed version matches the development version.
+
+---
+
+## Testing
+
+Manual testing was performed.
+
+### Blog Testing
+- Created new blog post
+- Verified it appears on blog page
+- Edited post and confirmed updates
+- Deleted post and confirmed removal
+- Uploaded image and verified display
+
+### Shelter Testing
+- Added new shelter
+- Edited shelter information
+- Deleted shelter
+- Verified changes reflect immediately
+
+### Authentication Testing
+- Created superuser
+- Tested login and logout
+- Verified admin access restriction
+
+### Responsive Testing
+Tested using browser developer tools:
+
+- Desktop view
+- Tablet view
+- Mobile view
+
+Confirmed layout, readability and navigation functionality.
+
+---
+
+##  Use of Artificial Intelligence
+
+AI (ChatGPT) was used as a study and debugging support tool.
+
+AI helped with:
+
+- Understanding Django configuration
+- Debugging deployment errors
+- Explaining relational database relationships
+- Reviewing project requirements
+- Improving documentation clarity
+
+All implementation, configuration and testing were completed by me.  
+AI was used as a learning assistant, not as an automatic code generator.
+
+---
+
+##  Project Structure
+
+war_paws_europe/
+│
+├── backend/
+│ ├── blog/
+│ ├── shelters/
+│ ├── main/
+│ ├── core/
+│ ├── static/
+│ ├── templates/
+│ ├── manage.py
+│ └── requirements.txt
+│
+├── README.md
+└── Procfile
+
+
+---
+
+##  Version Control
+
+- Regular commits made throughout development
+- Clear and descriptive commit messages
+- .gitignore configured properly
+- No secret keys stored in repository
+
+---
+
+##  Evaluation
+
+This project meets the full-stack project requirements:
+
+- Relational database implemented
+- Models and relationships designed
+- CRUD functionality working
+- Secure deployment
+- Responsive frontend design
+- Environment variables used
+- Testing documented
+- Deployment documented
+- Data schema described
+- Clear project rationale provided
+
+---
+
+##  Author
+
+Hanna Greentree  
+Web Programming Essentials  
+2026  
+
+---
+
+##  License
+
+This project is created for educational purposes only.
