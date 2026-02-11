@@ -9,13 +9,8 @@
     />
     <title>War Paws Europe | Contact</title>
 
-    <!-- Global site styles -->
     <link rel="stylesheet" href="css/styles.css?v=10" />
-
-    <!-- If your cards are styled here, keep it -->
     <link rel="stylesheet" href="css/documents.css?v=10" />
-
-    <!-- If you still use some shared section styles here, keep it -->
     <link rel="stylesheet" href="css/volunteers.css?v=10" />
   </head>
 
@@ -23,7 +18,6 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="header-inner">
-        <!-- Logo (left) -->
         <a class="brand" href="index.html" aria-label="War Paws Europe home">
           <img
             class="brand-mark"
@@ -33,7 +27,6 @@
           <span class="brand-name">War Paws Europe</span>
         </a>
 
-        <!-- Navigation (center) -->
         <nav class="main-nav" id="mainNav" aria-label="Main navigation">
           <ul class="nav-list">
             <li><a class="nav-link" href="index.html">Home</a></li>
@@ -44,7 +37,6 @@
           </ul>
         </nav>
 
-        <!-- Right side -->
         <div class="header-actions">
           <button
             class="menu-btn"
@@ -60,7 +52,7 @@
     </header>
 
     <main>
-      <!-- HERO IMAGE SWAP -->
+      <!-- HERO -->
       <section
         class="full-bleed hero-swap"
         aria-label="Contact hero image swap"
@@ -85,7 +77,7 @@
         <h2 class="labs-title">CONTACT WAR PAWS EUROPE</h2>
       </section>
 
-      <!-- INTRO TEXT -->
+      <!-- INTRO -->
       <section class="contact-intro" aria-label="Contact introduction">
         <p>
           If you are a volunteer, shelter, or a person hoping to adopt an animal
@@ -102,9 +94,7 @@
 
         <p class="notice">
           <strong>Please note:</strong> we do not accept any payments and we do
-          not have animals for adoption ourselves. We are animal lovers who
-          gathered information in one place to make adoption from war zones such
-          as Ukraine easier, safer, and more transparent.
+          not have animals for adoption ourselves.
         </p>
       </section>
 
@@ -116,6 +106,7 @@
           aria-label="Choose contact form"
         >
           <button
+            id="tab-volunteer"
             class="switch-btn active"
             type="button"
             data-target="volunteer-form"
@@ -127,6 +118,7 @@
           </button>
 
           <button
+            id="tab-adopt"
             class="switch-btn"
             type="button"
             data-target="adopt-form"
@@ -138,197 +130,137 @@
           </button>
         </div>
 
-        <!-- VOLUNTEER / SHELTER FORM -->
-        <form
+        <!-- VOLUNTEER TAB PANEL -->
+        <div
           id="volunteer-form"
           class="contact-form"
-          aria-label="Volunteer or shelter form"
+          role="tabpanel"
+          aria-labelledby="tab-volunteer"
         >
-          <h2>Volunteer / Shelter Form</h2>
+          <form aria-label="Volunteer or shelter form">
+            <h2>Volunteer / Shelter Form</h2>
 
-          <label>
-            Your full name *
-            <input type="text" name="vs_full_name" required />
-          </label>
+            <label>
+              Your full name *
+              <input type="text" name="vs_full_name" required />
+            </label>
 
-          <label>
-            Shelter or volunteer group name *
-            <input type="text" name="vs_group_name" required />
-          </label>
+            <label>
+              Shelter or volunteer group name *
+              <input type="text" name="vs_group_name" required />
+            </label>
 
-          <label>
-            How many animals are you currently taking care of? *
-            <input type="number" name="vs_animal_count" min="1" required />
-          </label>
+            <label>
+              How many animals are you currently taking care of? *
+              <input type="number" name="vs_animal_count" min="1" required />
+            </label>
 
-          <label>
-            Link to your social media account(s) *
-            <input
-              type="url"
-              name="vs_social"
-              placeholder="https://instagram.com/..."
-              required
-            />
-          </label>
+            <label>
+              Link to your social media account(s) *
+              <input type="url" name="vs_social" required />
+            </label>
 
-          <label>
-            Can you assist adopters from abroad? *
-            <select name="vs_assist_abroad" required>
-              <option value="">Please select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="sometimes">Sometimes</option>
-            </select>
-          </label>
+            <label>
+              Can you assist adopters from abroad? *
+              <select name="vs_assist_abroad" required>
+                <option value="">Please select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+              </select>
+            </label>
 
-          <label>
-            Do you regularly provide receipts on your social accounts? *
-            <select name="vs_receipts" required>
-              <option value="">Please select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="sometimes">Sometimes</option>
-            </select>
-          </label>
+            <label>
+              Do you regularly provide receipts? *
+              <select name="vs_receipts" required>
+                <option value="">Please select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="sometimes">Sometimes</option>
+              </select>
+            </label>
 
-          <label>
-            Your phone number *
-            <input type="tel" name="vs_phone" required />
-          </label>
+            <label>
+              Your phone number *
+              <input type="tel" name="vs_phone" required />
+            </label>
 
-          <label>
-            Your email address *
-            <input type="email" name="vs_email" required />
-          </label>
+            <label>
+              Your email address *
+              <input type="email" name="vs_email" required />
+            </label>
 
-          <label>
-            Your message to us *
-            <textarea name="vs_message" rows="6" required></textarea>
-          </label>
+            <label>
+              Your message to us *
+              <textarea name="vs_message" rows="6" required></textarea>
+            </label>
 
-          <button type="submit">Send message</button>
-        </form>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
 
-        <!-- ADOPTER FORM -->
-        <form
+        <!-- ADOPTER TAB PANEL -->
+        <div
           id="adopt-form"
           class="contact-form hidden"
-          aria-label="Adoption support form"
+          role="tabpanel"
+          aria-labelledby="tab-adopt"
         >
-          <h2>Adoption Support Form</h2>
+          <form aria-label="Adoption support form">
+            <h2>Adoption Support Form</h2>
 
-          <label>
-            Your full name *
-            <input type="text" name="ad_full_name" required />
-          </label>
+            <label>
+              Your full name *
+              <input type="text" name="ad_full_name" required />
+            </label>
 
-          <label>
-            Your country *
-            <input type="text" name="ad_country" required />
-          </label>
+            <label>
+              Your country *
+              <input type="text" name="ad_country" required />
+            </label>
 
-          <label>
-            Your phone number *
-            <input type="tel" name="ad_phone" required />
-          </label>
+            <label>
+              Your phone number *
+              <input type="tel" name="ad_phone" required />
+            </label>
 
-          <label>
-            Your email address *
-            <input type="email" name="ad_email" required />
-          </label>
+            <label>
+              Your email address *
+              <input type="email" name="ad_email" required />
+            </label>
 
-          <label>
-            Name of the shelter or volunteer you refer to *
-            <input type="text" name="ad_reference" required />
-          </label>
+            <label>
+              Shelter or volunteer name *
+              <input type="text" name="ad_reference" required />
+            </label>
 
-          <label>
-            Have you tried to resolve the issue directly? *
-            <select name="ad_tried_resolve" required>
-              <option value="">Please select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="partly">Partly</option>
-            </select>
-          </label>
+            <label>
+              Have you tried to resolve the issue directly? *
+              <select name="ad_tried_resolve" required>
+                <option value="">Please select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="partly">Partly</option>
+              </select>
+            </label>
 
-          <label>
-            Your message to us *
-            <textarea name="ad_message" rows="6" required></textarea>
-          </label>
+            <label>
+              Your message *
+              <textarea name="ad_message" rows="6" required></textarea>
+            </label>
 
-          <button type="submit">Send message</button>
-        </form>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-inner">
-        <a class="footer-brand" href="index.html">
-          <img
-            class="footer-brand-mark"
-            src="images/logo.png"
-            alt="War Paws Europe logo"
-          />
-        </a>
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <ul class="footer-nav-list">
-            <li><a class="footer-nav-link" href="index.html">Home</a></li>
-            <li>
-              <a class="footer-nav-link" href="documents.html">Documents</a>
-            </li>
-            <li><a class="footer-nav-link" href="blog.html">Blog</a></li>
-            <li>
-              <a class="footer-nav-link" href="shelters.html">Shelters</a>
-            </li>
-            <li>
-              <a class="footer-nav-link active" href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </nav>
-
-        <form class="footer-search">
-          <input
-            type="search"
-            placeholder="Search"
-            aria-label="Search this page"
-          />
-        </form>
-      </div>
-
       <div class="footer-bottom">
         <p class="copy">&copy; <span id="year"></span> War Paws Europe</p>
       </div>
     </footer>
 
     <script src="js/main.js?v=10" defer></script>
-
-    <!-- Form switch (kept tiny; doesn't affect your design) -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".switch-btn");
-        const forms = document.querySelectorAll(".contact-form");
-
-        buttons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            buttons.forEach((b) => {
-              b.classList.remove("active");
-              b.setAttribute("aria-selected", "false");
-            });
-
-            forms.forEach((f) => f.classList.add("hidden"));
-
-            btn.classList.add("active");
-            btn.setAttribute("aria-selected", "true");
-
-            const targetId = btn.getAttribute("data-target");
-            const targetForm = document.getElementById(targetId);
-            if (targetForm) targetForm.classList.remove("hidden");
-          });
-        });
-      });
-    </script>
   </body>
 </html>
