@@ -1,23 +1,12 @@
-War Paws Europe – Full Stack Django Web Application
+War Paws Europe – Full Stack Django Application
 Project Overview
-War Paws Europe is a full stack web application created as part of the Web Programming Essentials / Full Stack Development module.
-The project focuses on animal welfare organisations and volunteers helping animals affected by war and humanitarian crises in Europe.
-The website allows information to be stored in a database and displayed dynamically to users.
-The application is built using Python and Django on the back end, with HTML, CSS, and JavaScript on the front end, and is deployed to a cloud platform.
-Project Purpose and Value
-The purpose of this project is to:
-Store and manage structured data about animal shelters and blog posts
-Allow content to be created, edited, and deleted
-Provide users with access to organised and up-to-date information
-Demonstrate full stack development skills using a relational database
-Users benefit by having easy access to shelter and volunteer information, while the site owner benefits from being able to manage all content in one place.
-Target Audience
-Members of the public interested in animal rescue and adoption
-Volunteers and animal welfare supporters
-Tutors and assessors reviewing full stack development work
-Technologies Used
-Front End
-HTML5
+War Paws Europe is a full-stack web application developed as part of my Web Programming Essentials project.
+The purpose of this project is to create a database-driven web application that allows users to:
+Share information about animal shelters and rescues
+Publish blog updates about animals affected by war
+Access structured and reliable information in one place
+This project demonstrates my ability to design, build, deploy, and document a complete full-stack application using Django and relational databases.
+
 CSS3 (custom styling and responsive layout)
 JavaScript
 Back End
